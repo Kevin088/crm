@@ -17,7 +17,7 @@
 	function addObject(){
 		$('#dlg').dialog('open').dialog('setTitle','新增用户');
 		$('#fm').form('clear');
-		url = path+"/customer/add";
+		url = path+"/customerinfo/add";
 		mesTitle = '新增用户成功';
 	}
 	
@@ -244,7 +244,7 @@
 
 		<!-- 添加/修改对话框 -->
 		<div id="dlg" class="easyui-dialog"
-			style="width:400px;height:280px;padding:10px 20px" closed="true"
+			style="width:600px;height:500px;padding:10px 20px" closed="true"
 			buttons="#dlg-buttons">
 			<div class="ftitle">新增客户信息</div>
 			<form id="fm" method="post" novalidate>
@@ -253,17 +253,104 @@
 						required="true">
 				</div>
 				<div class="fitem">
-					<label>联系方式:</label> <input name="telephone" class="easyui-textbox"
-						required="true">
+					<label>联系方式:</label> <input name="telephone"  class="easyui-numberbox"
+						required="true" >
 				</div>
 				<div class="fitem">
 					<label>地址:</label> <input name=address class="easyui-textbox"
 						required="true">
 				</div>
-				<div class="fitem">
-					<label>是否有电脑:</label> <input name="iscompute" class="easyui-textbox"
-						required="true">
+				<div class="" style="margin-top: 10px">
+					<label>是否有电脑:</label>
+					<span class="radioSpan">
+	               		&nbsp&nbsp&nbsp
+	               		<input type="radio" name="iscompute" value="1" >是</input>
+	               		&nbsp&nbsp&nbsp&nbsp&nbsp
+	               		<input type="radio" name="iscompute" value="0">否</input>
+               		</span>
 				</div>
+				<div class="" style="margin-top: 10px">
+					<label>宽带运行商:</label>
+					<span class="radioSpan">
+	               		&nbsp&nbsp&nbsp
+	               		<input type="radio" name="broadband" value="1" >电信</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="broadband" value="2">移动</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="broadband" value="3">联通</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="broadband" value="4">无</input>
+               		</span>
+				</div>
+				<div class="" style="margin-top: 10px">
+					<label>宽带满意程度:</label>
+					<span class="radioSpan">
+	               		<input type="radio" name="broadbandSatisfy" value="1" >很满意</input>
+	               		&nbsp&nbsp&nbsp&nbsp&nbsp
+	               		<input type="radio" name="broadbandSatisfy" value="2">比较满意</input>
+	               		&nbsp
+	               		<input type="radio" name="broadbandSatisfy" value="3" >一般</input>
+	               		&nbsp&nbsp&nbsp&nbsp&nbsp
+	               		<input type="radio" name="broadbandSatisfy" value="4">不满意</input>
+               		</span>
+				</div>
+				<div class="" style="margin-top: 10px">
+					<label>是否融合:</label>
+					<span class="radioSpan">
+	               		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	               		<input type="radio" name="isBroadbandFusion" value="1" >是</input>
+	               		&nbsp&nbsp&nbsp&nbsp&nbsp
+	               		<input type="radio" name="isBroadbandFusion" value="0">否</input>
+               		</span>
+				</div>
+				<div class="fitem">
+					<label>宽带资费:</label> 
+					<input name="broadbandPrice" class="easyui-numberbox" precision="2" max="99999.9" required="true">
+				</div>
+				<div class="fitem">
+					<label>宽带到期:</label> 
+					<input name="broadbandEndTime" class="easyui-textbox" required="true">
+				</div>
+				<div class="" style="margin-top: 10px">
+					<label>电视运营商:</label>
+					<span class="radioSpan">
+	               		&nbsp&nbsp
+	               		<input type="radio" name="tv" value="1" >电信</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="tv" value="2">移动</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="tv" value="3">联通</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="tv" value="4">广电</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="tv" value="5">卫星电视接收器</input>
+	               		&nbsp&nbsp
+	               		<input type="radio" name="tv" value="6">无</input>
+               		</span>
+				</div>
+				<div class="" style="margin-top: 10px">
+					<label>电视满意程度:</label>
+					<span class="radioSpan">
+	    
+	               		<input type="radio" name="tvSatisfy" value="1" >很满意</input>
+	               		&nbsp&nbsp&nbsp
+	               		<input type="radio" name="tvSatisfy" value="2">比较满意</input>
+	               		&nbsp
+	               		<input type="radio" name="tvSatisfy" value="3" >一般</input>
+	               		&nbsp&nbsp&nbsp&nbsp&nbsp
+	               		<input type="radio" name="tvSatisfy" value="4">不满意</input>
+               		</span>
+				</div>
+				<div class="fitem">
+					<label>电视资费:</label> 
+					<input name="tvPrice" class="easyui-numberbox" precision="2" max="99999.9" required="true">
+				</div>
+				<div class="fitem">
+					<label>电视到期:</label> 
+					<input name="tvEndTime" class="easyui-textbox" required="true">
+				</div>				
+				
+				
 			</form>
 		
 		<!-- 添加/修改对话框按钮 -->
