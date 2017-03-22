@@ -30,17 +30,41 @@
         
 	</select>
 	
-	<insert id="addCustomer" useGeneratedKeys="true" keyProperty="id">
-		insert into customer(<trim suffixOverrides=",">
+	<insert id="addCustomerInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into customer_info(<trim suffixOverrides=",">
             <if test="name !=null and name !=''">name,</if>
+            <if test="telephone !=null and telephone !=''">telephone,</if>
             <if test="address !=null and address !=''">address,</if>
-            <if test="zipcode !=null and zipcode !=''">zipcode,</if>
-            <if test="fax !=null and fax !=''">fax</if>
+            <if test="iscompute !=null and iscompute !=''">iscompute,</if>
+            <if test="broadband !=null and broadband !=''">broadband,</if>
+            <if test="broadbandSatisfy !=null and broadbandSatisfy !=''">broadbandSatisfy,</if>
+            <if test="isBroadbandFusion !=null and isBroadbandFusion !=''">isBroadbandFusion,</if>
+            <if test="broadbandPrice !=null and broadbandPrice !=''">broadbandPrice,</if>
+            <if test="broadbandEndTime !=null and broadbandEndTime !=''">broadbandEndTime,</if>
+            <if test="tv !=null and tv !=''">tv,</if>
+            <if test="tvSatisfy !=null and tvSatisfy !=''">tvSatisfy,</if>
+            <if test="tvPrice !=null and tvPrice !=''">tvPrice,</if>
+            <if test="tvEndTime !=null and tvEndTime !=''">tvEndTime,</if>
+            <if test="district_id !=null and district_id !=''">district_id,</if>
+            <if test="username_id !=null and username_id !=''">username_id,</if>
+            <if test="datetime !=null and datetime !=''">datetime</if>
             </trim>)values(<trim suffixOverrides=",">
             <if test="name !=null and name !=''">#{name},</if>
+            <if test="telephone !=null and telephone !=''">#{telephone},</if>
             <if test="address !=null and address !=''">#{address},</if>
-            <if test="zipcode !=null and zipcode !=''">#{zipcode},</if>
-            <if test="fax !=null and fax !=''">#{fax}</if>
+            <if test="iscompute !=null and iscompute !=''">#{iscompute},</if>
+            <if test="broadband !=null and broadband !=''">#{broadband},</if>
+            <if test="broadbandSatisfy !=null and broadbandSatisfy !=''">#{broadbandSatisfy},</if>
+            <if test="isBroadbandFusion !=null and isBroadbandFusion !=''">#{isBroadbandFusion},</if>
+            <if test="broadbandPrice !=null and broadbandPrice !=''">#{broadbandPrice},</if>
+            <if test="broadbandEndTime !=null and broadbandEndTime !=''">#{broadbandEndTime},</if>
+            <if test="tv !=null and tv !=''">#{tv},</if>
+            <if test="tvSatisfy !=null and tvSatisfy !=''">#{tvSatisfy},</if>
+            <if test="tvPrice !=null and tvPrice !=''">#{tvPrice},</if>
+            <if test="tvEndTime !=null and tvEndTime !=''">#{tvEndTime},</if>
+            <if test="district_id !=null and district_id !=''">#{district_id},</if>
+            <if test="username_id !=null and username_id !=''">#{username_id},</if>
+            <if test="datetime !=null and datetime !=''">#{datetime}</if>
             </trim>)
 	</insert>
 	

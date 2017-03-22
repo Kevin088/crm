@@ -51,13 +51,14 @@
  	
 	//保存添加、修改内容
 	function saveObject(){
+		alert("save");
 	 	$('#fm').form('submit',{
 		 	url: url,
 		 	onSubmit: function(){
 		 		return $(this).form('validate');
 		 	},
 			success: function(result){
-				/* console.info(result); */
+				console.info(result);
 				var result = eval('('+result+')');
 				if (result.success){
 				 	$('#dlg').dialog('close'); 

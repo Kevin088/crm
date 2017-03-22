@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.dao.UserMapper">    
 	<select id="findUserByName" resultType="com.crm.model.User">
-		select id, username , password from sysuser where username = #{username} 
+		select * from sysuser where username = #{username} 
 	</select>
 	
 	<select id="getUsernameById" resultType="String">

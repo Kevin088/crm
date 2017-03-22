@@ -3,6 +3,8 @@
  */
 package com.crm.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -77,8 +79,9 @@ public class CustomerInfoService {
 	}
 
 	//添加
-	public void addCustomer(Customer customer){
-		customerInfoMapper.addCustomer(customer);
+	public void addCustomerInfo(CustomerInfo customerInfo){
+		customerInfo.setDatetime(new Timestamp(new Date().getTime()));
+		customerInfoMapper.addCustomerInfo(customerInfo);
 	};
 
 	//修改

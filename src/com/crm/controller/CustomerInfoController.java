@@ -6,6 +6,8 @@ package com.crm.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.crm.model.Customer;
 import com.crm.model.CustomerInfo;
+import com.crm.model.User;
 import com.crm.model.easyui.DataGrid;
 import com.crm.model.easyui.Json;
 import com.crm.model.easyui.PageHelper;
 import com.crm.pojo.CustomerInfoPojo;
 import com.crm.service.CustomerInfoService;
+import com.crm.util.common.Const;
 
 /**
  * @author zh
@@ -64,14 +68,15 @@ public class CustomerInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/customerinfo/add",method = RequestMethod.POST)
-    public Json add(Customer customer) {
-		Json j = new Json();
-		
+    public Json add(CustomerInfo customerInfo,HttpServletRequest request) {
+		Json j = new Json();		
 		try {
-			customerInfoService.addCustomer(customer);
+			User user =  (User)request.getSession().getAttribute(Const.SESSION_USER); 
+			customerInfo.setUsername_id(user.getId());
+			customerInfoService.addCustomerInfo(customerInfo);
             j.setSuccess(true);
             j.setMsg("用户新增成功！");
-            j.setObj(customer);
+            j.setObj(customerInfo);
         } catch (Exception e) {
             j.setMsg(e.getMessage());
         }

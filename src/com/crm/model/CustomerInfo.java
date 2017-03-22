@@ -1,11 +1,12 @@
 package com.crm.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class CustomerInfo {
 	private int id;
 	private String name;
-	private int telephone;
+	private String telephone;
 	private String address;
 	private int	 iscompute;
 	private int broadband;
@@ -19,8 +20,8 @@ public class CustomerInfo {
 	private String tvEndTime;
 	private int district_id;
 	private int username_id;
-
-	private Date datetime;
+	
+	private Timestamp datetime;
 	public int getId() {
 		return id;
 	}
@@ -33,10 +34,10 @@ public class CustomerInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 	public int getIscompute() {
@@ -115,7 +116,7 @@ public class CustomerInfo {
 	public Date getDatetime() {
 		return datetime;
 	}
-	public void setDatetime(Date datetime) {
+	public void setDatetime(Timestamp datetime) {
 		this.datetime = datetime;
 	}
 	public String getAddress() {

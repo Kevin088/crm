@@ -40,7 +40,7 @@ public interface CustomerInfoMapper {
 	public List<CustomerInfoPojo> datagridCustomerInfo(PageHelper page);
 
 	//添加
-	public void addCustomer(Customer customer);
+	public void addCustomerInfo(CustomerInfo customerInfo);
 
 	//修改
 	public void editCustomer(Customer customer);
