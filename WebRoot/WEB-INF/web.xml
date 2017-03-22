@@ -11,6 +11,7 @@
     <url-pattern>/img/*</url-pattern>
     <url-pattern>/fonts/*</url-pattern>
     <url-pattern>/assets/*</url-pattern>
+    
   </servlet-mapping>
   <filter>
     <filter-name>encodingFilter</filter-name>
