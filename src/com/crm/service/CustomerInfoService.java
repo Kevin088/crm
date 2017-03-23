@@ -19,6 +19,7 @@ import com.crm.model.CustomerInfo;
 import com.crm.model.Visitlog;
 import com.crm.model.easyui.PageHelper;
 import com.crm.pojo.CustomerInfoPojo;
+import com.crm.pojo.CustomerInfoSearchPojo;
 
 /**
  * @author zh
@@ -72,10 +73,18 @@ public class CustomerInfoService {
 	 * @param page
 	 * @return
 	 */
-	public List<CustomerInfoPojo> datagridCustomer(PageHelper page) {
+	public List<CustomerInfoPojo> datagridCustomer(PageHelper page,CustomerInfoPojo customerInfoPojo) {
 		page.setStart((page.getPage()-1)*page.getRows());
 		page.setEnd(page.getPage()*page.getRows());
-		return customerInfoMapper.datagridCustomerInfo(page);  
+		CustomerInfoSearchPojo pageInfoPojo=new CustomerInfoSearchPojo();
+		
+		pageInfoPojo.setName(customerInfoPojo.getName());
+		pageInfoPojo.setUserName(customerInfoPojo.getUserName());
+		pageInfoPojo.setSort(page.getSort());
+		pageInfoPojo.setOrder(page.getOrder());
+		pageInfoPojo.setStart(page.getStart());
+		pageInfoPojo.setEnd(page.getEnd());
+		return customerInfoMapper.datagridCustomerInfo(pageInfoPojo);  
 	}
 
 	//添加

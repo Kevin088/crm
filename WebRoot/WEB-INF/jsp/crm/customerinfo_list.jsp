@@ -34,7 +34,18 @@
 	 		$.messager.alert('提示', '请选择要编辑的记录！', 'error');
 	 	}
 	}
- 	
+	//查询用户信息
+ 	function searchObject(){
+	 	$('#dlgsearch').dialog('open').dialog('setTitle','查询用户');
+	 	url = path+"/customerinfo/search"
+	 	mesTitle = '查询用户成功';
+	}
+ 	function searchUser(){
+ 		$('#datagrid').datagrid('reload',{
+ 			name: $('#name').val(),
+ 			userName: $('#userName').val()
+ 		}); 
+ 	}
 	//删除用信息
  	function deleteObject(){
 	 	var row = $('#datagrid').datagrid('getSelected');
@@ -124,7 +135,7 @@
 		if(val==1)
 			a="是";
 		else
-			a="无";
+			a="否";
 		return a;
 	}
 	//宽带运营商  电信、移动、联通、无
@@ -199,7 +210,7 @@
 	<div region="center" border="false" style="overflow: hidden;">
 		<!-- 用户信息列表 title="用户管理" -->
 		<table id="datagrid" class="easyui-datagrid" fit="true"
-			url="${path}/customerinfo/datagrid" 
+			url="${path}/customerinfo/datagrid?" 
 			toolbar="#toolbar" 
 			pagination="true"
 			singleSelect="true" 
@@ -240,11 +251,13 @@
 				iconCls="icon-edit" plain="true" onclick="editObject();">编辑客户</a> 
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true" onclick="deleteObject();">删除客户</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton"
+				iconCls="icon-search" plain="true" onclick="searchObject();">查询客户</a>
 		</div>
 
 		<!-- 添加/修改对话框 -->
 		<div id="dlg" class="easyui-dialog"
-			style="width:600px;height:500px;padding:10px 20px" closed="true"
+			style="width:680px;height:500px;padding:10px 20px" closed="true"
 			buttons="#dlg-buttons">
 			<div class="ftitle">新增客户信息</div>
 			<form id="fm" method="post" novalidate>
@@ -260,47 +273,36 @@
 					<label>地址:</label> <input name=address class="easyui-textbox"
 						required="true">
 				</div>
-				<div class="" style="margin-top: 10px">
+				<div class="fitem" style="margin-top: 10px">
 					<label>是否有电脑:</label>
 					<span class="radioSpan">
-	               		&nbsp&nbsp&nbsp
-	               		<input type="radio" name="iscompute" value="1" >是</input>
-	               		&nbsp&nbsp&nbsp&nbsp&nbsp
-	               		<input type="radio" name="iscompute" value="0">否</input>
+	               		<input type="radio" name="iscompute" value="1" style="width:35px;">是</input>
+	               		<input type="radio" name="iscompute" value="0" style="width:35px;">否</input>
                		</span>
 				</div>
-				<div class="" style="margin-top: 10px">
+				<div class="fitem" style="margin-top: 10px">
 					<label>宽带运行商:</label>
 					<span class="radioSpan">
-	               		&nbsp&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="1" checked>电信</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="2" >移动</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="3" >联通</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="4" >无</input>
+	               		<input type="radio" name="broadband" value="1" style="width:35px;">电信</input>
+	               		<input type="radio" name="broadband" value="2" style="width:35px;">移动</input>
+	               		<input type="radio" name="broadband" value="3" style="width:35px;">联通</input>
+	               		<input type="radio" name="broadband" value="4" style="width:35px;">无</input>
                		</span>
 				</div>
-				<div class="" style="margin-top: 10px">
+				<div class="fitem" style="margin-top: 10px">
 					<label>宽带满意程度:</label>
 					<span class="radioSpan">
-	               		<input type="radio" name="broadbandSatisfy" value="1" >很满意</input>
-	               		&nbsp&nbsp&nbsp&nbsp&nbsp
-	               		<input type="radio" name="broadbandSatisfy" value="2">比较满意</input>
-	               		&nbsp
-	               		<input type="radio" name="broadbandSatisfy" value="3" >一般</input>
-	               		&nbsp&nbsp&nbsp&nbsp&nbsp
-	               		<input type="radio" name="broadbandSatisfy" value="4">不满意</input>
+	               		<input type="radio" name="broadbandSatisfy" value="1" style="width:35px;">很满意</input>
+	               		<input type="radio" name="broadbandSatisfy" value="2" style="width:35px;">比较满意</input>
+	               		<input type="radio" name="broadbandSatisfy" value="3" style="width:35px;">一般</input>
+	               		<input type="radio" name="broadbandSatisfy" value="4" style="width:35px;">不满意</input>
                		</span>
 				</div>
-				<div class="" style="margin-top: 10px">
+				<div class="fitem" style="margin-top: 10px">
 					<label>是否融合:</label>
 					<span class="radioSpan">
-	               		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-	               		<input type="radio" name="isBroadbandFusion" value="1" >是</input>
-	               		&nbsp&nbsp&nbsp&nbsp&nbsp
-	               		<input type="radio" name="isBroadbandFusion" value="0">否</input>
+	               		<input type="radio" name="isBroadbandFusion" value="1" style="width:35px;">是</input>
+	               		<input type="radio" name="isBroadbandFusion" value="0" style="width:35px;">否</input>
                		</span>
 				</div>
 				<div class="fitem">
@@ -309,36 +311,26 @@
 				</div>
 				<div class="fitem">
 					<label>宽带到期:</label> 
-					<input name="broadbandEndTime" class="easyui-textbox" required="true">
+					<input name="broadbandEndTime" class="easyui-datebox" required="true">
 				</div>
-				<div class="" style="margin-top: 10px">
+				<div class="fitem" style="margin-top: 10px">
 					<label>电视运营商:</label>
 					<span class="radioSpan">
-	               		&nbsp&nbsp
-	               		<input type="radio" name="tv" value="1" >电信</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="tv" value="2">移动</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="tv" value="3">联通</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="tv" value="4">广电</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="tv" value="5">卫星电视接收器</input>
-	               		&nbsp&nbsp
-	               		<input type="radio" name="tv" value="6">无</input>
+	               		<input type="radio" name="tv" value="1" style="width:35px;">电信</input>
+	               		<input type="radio" name="tv" value="2" style="width:35px;">移动</input>
+	               		<input type="radio" name="tv" value="3" style="width:35px;">联通</input>
+	               		<input type="radio" name="tv" value="4" style="width:35px;">广电</input>
+	               		<input type="radio" name="tv" value="5" style="width:35px;">卫星电视接收器</input>
+	               		<input type="radio" name="tv" value="6" style="width:35px;">无</input>
                		</span>
 				</div>
-				<div class="" style="margin-top: 10px">
+				<div class="fitem" style="margin-top: 10px">
 					<label>电视满意程度:</label>
-					<span class="radioSpan">
-	    
-	               		<input type="radio" name="tvSatisfy" value="1" >很满意</input>
-	               		&nbsp&nbsp&nbsp
-	               		<input type="radio" name="tvSatisfy" value="2">比较满意</input>
-	               		&nbsp
-	               		<input type="radio" name="tvSatisfy" value="3" >一般</input>
-	               		&nbsp&nbsp&nbsp&nbsp&nbsp
-	               		<input type="radio" name="tvSatisfy" value="4">不满意</input>
+					<span class="radioSpan">  
+	               		<input type="radio" name="tvSatisfy" value="1" style="width:35px;">很满意</input>
+	               		<input type="radio" name="tvSatisfy" value="2" style="width:35px;">比较满意</input>
+	               		<input type="radio" name="tvSatisfy" value="3" style="width:35px;">一般</input>
+	               		<input type="radio" name="tvSatisfy" value="4" style="width:35px;">不满意</input>
                		</span>
 				</div>
 				<div class="fitem">
@@ -347,12 +339,31 @@
 				</div>
 				<div class="fitem">
 					<label>电视到期:</label> 
-					<input name="tvEndTime" class="easyui-textbox" required="true">
+					<input name="tvEndTime" class="easyui-datebox" required="true">
 				</div>				
-				
-				
 			</form>
+		<!--  查询对话框-->
+		<div id="dlgsearch" class="easyui-dialog"
+			style="width:400px;height:200px;padding:30px 20px" closed="true"
+			buttons="#dlg-seach-buttons">
+			<form id="fmsearch" method="post" novalidate>
+				<div class="fitem">
+					<label>客户姓名:</label> <input id="name" class="easyui-textbox" >
+				</div>
+				<div class="fitem">
+					<label>创建人:</label> <input id="userName" class="easyui-textbox" >
+				</div>
+			</form>
+		</div>
 		
+		<!-- 查询对话框按钮 -->
+		<div id="dlg-seach-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton c6"
+				iconCls="icon-ok" onclick="searchUser()" style="width:90px">查询</a> 
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#dlgsearch').dialog('close')"
+			style="width:90px">取消</a>
+		</div>
 		<!-- 添加/修改对话框按钮 -->
 		<div id="dlg-buttons">
 			<a href="javascript:void(0)" class="easyui-linkbutton c6"

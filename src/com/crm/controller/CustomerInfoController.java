@@ -53,10 +53,10 @@ public class CustomerInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/customerinfo/datagrid", method = RequestMethod.POST)
-	public DataGrid datagrid(PageHelper page,CustomerInfo customerInfo) {
+	public DataGrid datagrid(PageHelper page,CustomerInfoPojo customerInfoPojo) {
 		DataGrid dg = new DataGrid();
-		dg.setTotal(customerInfoService.getDatagridTotal(customerInfo));
-		List<CustomerInfoPojo> list = customerInfoService.datagridCustomer(page);
+		dg.setTotal(customerInfoService.getDatagridTotal(customerInfoPojo));
+		List<CustomerInfoPojo> list = customerInfoService.datagridCustomer(page,customerInfoPojo);
 		System.out.println(list.get(0).getDatetime().getTime());
 		dg.setRows(list);
 		return dg;
