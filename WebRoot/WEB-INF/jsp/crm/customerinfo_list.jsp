@@ -35,11 +35,6 @@
 	 	}
 	}
 	//查询用户信息
- 	function searchObject(){
-	 	$('#dlgsearch').dialog('open').dialog('setTitle','查询用户');
-	 	url = path+"/customerinfo/search"
-	 	mesTitle = '查询用户成功';
-	}
  	function searchUser(){
  		$('#datagrid').datagrid('reload',{
  			name: $('#name').val(),
@@ -202,7 +197,30 @@
 		}
 		return a;
 	}	
-		
+	//导出用户信息
+ 	function exportObject(){
+	 	$('#dlg_export').dialog('open').dialog('setTitle','导出用户');
+	 	url = path+"/customerinfo/export"
+	 	mesTitle = '导出用户成功';
+	}
+	function exportObjectDo(){
+	 	$('#fm_export').form('submit',{
+		 	url: url,
+			success: function(result){
+				var result = eval('('+result+')');
+				if (result.success){
+				 	$('#dlg_export').dialog('close'); 
+				} else {
+					 mesTitle = '导出用户失败';
+				}
+				$.messager.show({ 
+					 title: mesTitle,
+					 msg: result.msg
+				});
+			}
+	 	});
+	 	$('#dlg_export').dialog('close')
+	}
 </script>
 
 </head>
@@ -253,6 +271,10 @@
 				iconCls="icon-remove" plain="true" onclick="deleteObject();">删除客户</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-search" plain="true" onclick="searchObject();">查询客户</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton"
+				iconCls="icon-remove" plain="true" onclick="exportObject();">导出</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton"
+				iconCls="icon-remove" plain="true" onclick="importObject();">导入</a>
 		</div>
 
 		<!-- 添加/修改对话框 -->
@@ -391,6 +413,26 @@
 				iconCls="icon-cancel" onclick="javascript:$('#dlg_delete').dialog('close')"
 				style="width:90px">取消</a>
 		</div>
+		
+		<!-- 导出客户对话框 -->
+		<div id="dlg_export" class="easyui-dialog"
+			style="width:300px;height:200px;padding:10px 20px" closed="true"
+			buttons="#dlg-export-buttons">
+			<div class="ftitle">请谨慎操作</div>
+			<form id="fm_export" method="post" novalidate>
+					<label>确定导出客户吗？</label>
+			</form>
+		</div>
+		
+		<!-- 导出客户对话框按钮 -->
+		<div id="dlg-export-buttons">
+			<a href="javascript:void(0)" class="easyui-linkbutton c6"
+				iconCls="icon-ok" onclick="exportObjectDo()" style="width:90px">确定</a> 
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				iconCls="icon-cancel" onclick="javascript:$('#dlg_export').dialog('close')"
+				style="width:90px">取消</a>
+		</div>
+		
 		
 	</div>
 </body>

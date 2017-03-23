@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -115,6 +116,23 @@ public class CustomerInfoController {
         log.debug("穿过来的用户ID为："+customerInfo.getId());
         try {
         	customerInfoService.deleteCustomerInfo(customerInfo.getId());
+			j.setSuccess(true);
+	        j.setMsg("删除成功！");
+        } catch (Exception e) {
+            j.setMsg(e.getMessage());
+        }
+        return j;
+	}
+	/**
+	 * 导出所有
+	 * @param out
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/customerinfo/export",method = RequestMethod.POST)
+	public Json export(HttpServletResponse res) {
+		Json j = new Json();
+        try {
+        	customerInfoService.exportCustomerInfo(res);
 			j.setSuccess(true);
 	        j.setMsg("删除成功！");
         } catch (Exception e) {
