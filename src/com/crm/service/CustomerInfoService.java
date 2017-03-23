@@ -14,7 +14,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -25,11 +24,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import com.crm.dao.CustomerInfoMapper;
-import com.crm.dao.CustomerMapper;
 import com.crm.model.Contact;
 import com.crm.model.Customer;
 import com.crm.model.CustomerInfo;
-import com.crm.model.Visitlog;
 import com.crm.model.easyui.PageHelper;
 import com.crm.pojo.CustomerInfoPojo;
 import com.crm.pojo.CustomerInfoSearchPojo;

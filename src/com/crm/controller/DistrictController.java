@@ -15,60 +15,61 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.crm.model.Customer;
+import com.crm.model.District;
+import com.crm.model.User;
 import com.crm.model.easyui.DataGrid;
 import com.crm.model.easyui.Json;
 import com.crm.model.easyui.PageHelper;
-import com.crm.service.CustomerService;
+import com.crm.service.DistrictService;
 
 /**
  * @author zh
+ * 2014-8-23
  */
 @Controller
-public class CustomerController {
+public class DistrictController {
 	
-	private final Logger log = LoggerFactory.getLogger(CustomerController.class);
+	private final Logger log = LoggerFactory.getLogger(DistrictController.class);
 	
 	@Resource
-	private CustomerService customerService;
+	private DistrictService districtService;
 	
 	/**
-	 * 跳转到客户表格页面
+	 * 跳转到用户表格页面
 	 * @return
 	 */
-	@RequestMapping(value = "/customer/list",method = RequestMethod.GET)
-    public String customerList(Model model) {
-        return "crm/customer_list";
+	@RequestMapping(value = "/district/list",method = RequestMethod.GET)
+    public String districtList(Model model) {
+        return "district/district";
     }
-	
 	/**
-	 * 表格
+	 * 用户表格
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/customer/datagrid", method = RequestMethod.POST)
-	public DataGrid datagrid(PageHelper page,Customer customer) {
+	@RequestMapping(value="/district/datagrid", method = RequestMethod.POST)
+	public DataGrid datagrid(PageHelper page) {
 		DataGrid dg = new DataGrid();
-		dg.setTotal(customerService.getDatagridTotal(customer));
-		List<Customer> list = customerService.datagridCustomer(page);
-		dg.setRows(list);
+		dg.setTotal(districtService.datagridTotal());
+		List<District> districtList = districtService.datagridDistrict(page);
+		dg.setRows(districtList);
 		return dg;
 	}
 	
 	/**
-	 * 新增
+	 * 新增用户
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/customer/add",method = RequestMethod.POST)
-    public Json add(Customer customer) {
+	@RequestMapping(value = "/district/addUser",method = RequestMethod.POST)
+    public Json addUser(User user) {
 		Json j = new Json();
 		
 		try {
-			customerService.addCustomer(customer);
+            //userService.add(user);
             j.setSuccess(true);
             j.setMsg("用户新增成功！");
-            j.setObj(customer);
+            j.setObj(user);
         } catch (Exception e) {
             j.setMsg(e.getMessage());
         }
@@ -76,20 +77,21 @@ public class CustomerController {
     }
 	
 	/**
-     * 修改
+     * 修改用户
      * 
+     * @param user
      * @return
      */
 	@ResponseBody
-    @RequestMapping(value = "/customer/edit",method = RequestMethod.POST)
-    public Json editUser(Customer customer) {
+    @RequestMapping(value = "/district/editUser",method = RequestMethod.POST)
+    public Json editUser(User user) {
         Json j = new Json();
-        log.debug("穿过来的用户ID为："+customer.getId());
+        log.debug("穿过来的用户ID为："+user.getId());
         try {
-        	customerService.editCustomer(customer);
+           // userService.edit(user);
             j.setSuccess(true);
             j.setMsg("编辑成功！");
-            j.setObj(customer);
+            j.setObj(user);
         } catch (Exception e) {
             j.setMsg(e.getMessage());
         }
@@ -97,16 +99,16 @@ public class CustomerController {
     }
 	
 	/**
-	 * 删除某个
+	 * 删除某个用户
+	 * @param userId
 	 * @param out
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/customer/delete",method = RequestMethod.POST)
-	public Json delete(Customer customer) {
+	@RequestMapping(value = "/district/deleteDistrict",method = RequestMethod.POST)
+	public Json deleteDistrict(District district) {
 		Json j = new Json();
-        log.debug("穿过来的用户ID为："+customer.getId());
         try {
-        	customerService.deleteCustomer(customer.getId());
+			districtService.deleteDistrict(district.getId());
 			j.setSuccess(true);
 	        j.setMsg("删除成功！");
         } catch (Exception e) {
