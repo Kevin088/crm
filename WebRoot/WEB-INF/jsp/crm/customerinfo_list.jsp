@@ -28,7 +28,7 @@
 	 		var id = row.id;
 		 	$('#dlg').dialog('open').dialog('setTitle','编辑用户');
 		 	$('#fm').form('load',row);//这句话有问题，第一次加载时正确的，第二次就出错了，还保持第一次的数据
-		 	url = path+"/customer/edit?id="+id;
+		 	url = path+"/customerinfo/edit?id="+id;
 		 	mesTitle = '编辑用户成功';
 	 	}else{
 	 		$.messager.alert('提示', '请选择要编辑的记录！', 'error');
@@ -40,9 +40,9 @@
 	 	var row = $('#datagrid').datagrid('getSelected');
 	 	if (row){
 	 		var id = row.id;
-		 	$('#dlg_delete').dialog('open').dialog('setTitle','删除用户');
+		 	$('#dlg_delete').dialog('open').dialog('setTitle','删除用户:'+row.name);
 		 	$('#fm').form('load',row);//这句话有问题，第一次加载时正确的，第二次就出错了，还保持第一次的数据
-		 	url = path+"/customer/delete?id="+id;
+		 	url = path+"/customerinfo/delete?id="+id;
 		 	mesTitle = '删除用户成功';
 	 	}else{
 	 		$.messager.alert('提示', '请选择要删除的记录！', 'error');
@@ -51,7 +51,6 @@
  	
 	//保存添加、修改内容
 	function saveObject(){
-		alert("save");
 	 	$('#fm').form('submit',{
 		 	url: url,
 		 	onSubmit: function(){
@@ -226,7 +225,7 @@
 					<th field="tvEndTime" width="100">电视到期</th>			
 					<th field="districtName" width="100" >县分</th>	
 					<th field="userName" width="100" >创建人</th>	
-					<th field="datetime" width="100" formatter="formatDate">创建时间</th>	
+					<th field="datetime" width="130" formatter="formatDate">创建时间</th>	
 				</tr>
 			</thead>
 		</table>
@@ -274,13 +273,13 @@
 					<label>宽带运行商:</label>
 					<span class="radioSpan">
 	               		&nbsp&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="1" >电信</input>
+	               		<input type="radio" name="broadband" value="1" checked>电信</input>
 	               		&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="2">移动</input>
+	               		<input type="radio" name="broadband" value="2" >移动</input>
 	               		&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="3">联通</input>
+	               		<input type="radio" name="broadband" value="3" >联通</input>
 	               		&nbsp&nbsp
-	               		<input type="radio" name="broadband" value="4">无</input>
+	               		<input type="radio" name="broadband" value="4" >无</input>
                		</span>
 				</div>
 				<div class="" style="margin-top: 10px">

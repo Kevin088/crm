@@ -43,9 +43,9 @@ public interface CustomerInfoMapper {
 	public void addCustomerInfo(CustomerInfo customerInfo);
 
 	//修改
-	public void editCustomer(Customer customer);
+	public void editCustomerInfo(CustomerInfo customerInfo);
 	
 	//删除
-	public void deleteCustomer(int id);
+	public void deleteCustomerInfo(int id);
 
 }

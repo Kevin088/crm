@@ -85,13 +85,13 @@ public class CustomerInfoService {
 	};
 
 	//修改
-	public void editCustomer(Customer customer){
-		customerInfoMapper.editCustomer(customer);
+	public void editCustomerInfo(CustomerInfo customerInfo){
+		customerInfoMapper.editCustomerInfo(customerInfo);
 	};
 	
 	//删除
-	public void deleteCustomer(int id){
-		customerInfoMapper.deleteCustomer(id);
+	public void deleteCustomerInfo(int id){
+		customerInfoMapper.deleteCustomerInfo(id);
 	};
     
 }

@@ -30,32 +30,68 @@
         
 	</select>
 	
-	<insert id="addCustomer" useGeneratedKeys="true" keyProperty="id">
-		insert into customer(<trim suffixOverrides=",">
+	<insert id="addCustomerInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into customer_info(<trim suffixOverrides=",">
             <if test="name !=null and name !=''">name,</if>
+            <if test="telephone !=null and telephone !=''">telephone,</if>
             <if test="address !=null and address !=''">address,</if>
-            <if test="zipcode !=null and zipcode !=''">zipcode,</if>
-            <if test="fax !=null and fax !=''">fax</if>
+            <if test="iscompute !=null and iscompute !=''">iscompute,</if>
+            <if test="broadband !=null and broadband !=''">broadband,</if>
+            <if test="broadbandSatisfy !=null and broadbandSatisfy !=''">broadbandSatisfy,</if>
+            <if test="isBroadbandFusion !=null and isBroadbandFusion !=''">isBroadbandFusion,</if>
+            <if test="broadbandPrice !=null and broadbandPrice !=''">broadbandPrice,</if>
+            <if test="broadbandEndTime !=null and broadbandEndTime !=''">broadbandEndTime,</if>
+            <if test="tv !=null and tv !=''">tv,</if>
+            <if test="tvSatisfy !=null and tvSatisfy !=''">tvSatisfy,</if>
+            <if test="tvPrice !=null and tvPrice !=''">tvPrice,</if>
+            <if test="tvEndTime !=null and tvEndTime !=''">tvEndTime,</if>
+            <if test="district_id !=null and district_id !=''">district_id,</if>
+            <if test="username_id !=null and username_id !=''">username_id,</if>
+            <if test="datetime !=null and datetime !=''">datetime</if>
             </trim>)values(<trim suffixOverrides=",">
             <if test="name !=null and name !=''">#{name},</if>
+            <if test="telephone !=null and telephone !=''">#{telephone},</if>
             <if test="address !=null and address !=''">#{address},</if>
-            <if test="zipcode !=null and zipcode !=''">#{zipcode},</if>
-            <if test="fax !=null and fax !=''">#{fax}</if>
+            <if test="iscompute !=null and iscompute !=''">#{iscompute},</if>
+            <if test="broadband !=null and broadband !=''">#{broadband},</if>
+            <if test="broadbandSatisfy !=null and broadbandSatisfy !=''">#{broadbandSatisfy},</if>
+            <if test="isBroadbandFusion !=null and isBroadbandFusion !=''">#{isBroadbandFusion},</if>
+            <if test="broadbandPrice !=null and broadbandPrice !=''">#{broadbandPrice},</if>
+            <if test="broadbandEndTime !=null and broadbandEndTime !=''">#{broadbandEndTime},</if>
+            <if test="tv !=null and tv !=''">#{tv},</if>
+            <if test="tvSatisfy !=null and tvSatisfy !=''">#{tvSatisfy},</if>
+            <if test="tvPrice !=null and tvPrice !=''">#{tvPrice},</if>
+            <if test="tvEndTime !=null and tvEndTime !=''">#{tvEndTime},</if>
+            <if test="district_id !=null and district_id !=''">#{district_id},</if>
+            <if test="username_id !=null and username_id !=''">#{username_id},</if>
+            <if test="datetime !=null and datetime !=''">#{datetime}</if>
             </trim>)
 	</insert>
 	
-    <update id="editCustomer">
-    	update customer
+    <update id="editCustomerInfo">
+    	update customer_info
     	<set>
-    		<if test="name !=null and name !=''">name=#{name},</if>
-            <if test="address !=null and address !=''">address=#{address},</if>
-            <if test="zipcode !=null and zipcode !=''">zipcode=#{zipcode},</if>
-            <if test="fax !=null and fax !=''">fax=#{fax}</if>
+    		<trim suffixOverrides=",">	            
+		        <if test="name !=null and name !=''">name=#{name},</if>
+	            <if test="telephone !=null and telephone !=''">telephone=#{telephone},</if>
+	            <if test="address !=null and address !=''">address=#{address},</if>
+	            <if test="iscompute !=null and iscompute !=''">iscompute=#{iscompute},</if>
+	            <if test="broadband !=null and broadband !=''">broadband=#{broadband},</if>
+	            <if test="broadbandSatisfy !=null and broadbandSatisfy !=''">broadbandSatisfy=#{broadbandSatisfy},</if>
+	            <if test="isBroadbandFusion !=null and isBroadbandFusion !=''">isBroadbandFusion=#{isBroadbandFusion},</if>
+	            <if test="broadbandPrice !=null and broadbandPrice !=''">broadbandPrice=#{broadbandPrice},</if>
+	            <if test="broadbandEndTime !=null and broadbandEndTime !=''">broadbandEndTime=#{broadbandEndTime},</if>
+	            <if test="tv !=null and tv !=''">tv=#{tv},</if>
+	            <if test="tvSatisfy !=null and tvSatisfy !=''">tvSatisfy=#{tvSatisfy},</if>
+	            <if test="tvPrice !=null and tvPrice !=''">tvPrice=#{tvPrice},</if>
+	            <if test="tvEndTime !=null and tvEndTime !=''">tvEndTime=#{tvEndTime},</if>
+	            <if test="district_id !=null and district_id !=''">district_id=#{district_id},</if>
+            </trim>
     	</set>
     	where id = #{id}
     </update>
     
-    <delete id="deleteCustomer" parameterType="int">
-		delete from customer where id=#{id}
+    <delete id="deleteCustomerInfo" parameterType="int">
+		update customer_info set isdelete=1 where id = #{id}
 	</delete>
 </mapper>

@@ -90,14 +90,14 @@ public class CustomerInfoController {
      */
 	@ResponseBody
     @RequestMapping(value = "/customerinfo/edit",method = RequestMethod.POST)
-    public Json editUser(Customer customer) {
+    public Json editUser(CustomerInfo customerInfo) {
         Json j = new Json();
-        log.debug("穿过来的用户ID为："+customer.getId());
+        log.debug("穿过来的编辑的customerInfo的ID为："+customerInfo.getId());
         try {
-        	customerInfoService.editCustomer(customer);
+        	customerInfoService.editCustomerInfo(customerInfo);
             j.setSuccess(true);
             j.setMsg("编辑成功！");
-            j.setObj(customer);
+            j.setObj(customerInfo);
         } catch (Exception e) {
             j.setMsg(e.getMessage());
         }
@@ -110,11 +110,11 @@ public class CustomerInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/customerinfo/delete",method = RequestMethod.POST)
-	public Json delete(Customer customer) {
+	public Json delete(CustomerInfo customerInfo) {
 		Json j = new Json();
-        log.debug("穿过来的用户ID为："+customer.getId());
+        log.debug("穿过来的用户ID为："+customerInfo.getId());
         try {
-        	customerInfoService.deleteCustomer(customer.getId());
+        	customerInfoService.deleteCustomerInfo(customerInfo.getId());
 			j.setSuccess(true);
 	        j.setMsg("删除成功！");
         } catch (Exception e) {
