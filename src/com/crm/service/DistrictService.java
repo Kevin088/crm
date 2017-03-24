@@ -3,6 +3,7 @@
  */
 package com.crm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import com.crm.model.District;
 import com.crm.model.SysMenu;
 import com.crm.model.User;
 import com.crm.model.easyui.PageHelper;
+import com.crm.model.easyui.Tree;
 import com.crm.pojo.CustomerInfoPojo;
 import com.crm.pojo.CustomerInfoSearchPojo;
 
@@ -41,5 +43,26 @@ public class DistrictService {
     public void deleteDistrict(long id){
     	districtMapper.deleteDistrict(id);
     }
-	
+    public void addDistrict(District district){
+    	districtMapper.addDistrict(district);
+    }
+    public void upDateDistrict(District district){
+    	districtMapper.updateDistrict(district);
+    }
+	public List<Tree> nodesDistrict(){
+		List<District> list=districtMapper.getDatagrid();
+		List<Tree> treeList=null;
+		if(list!=null){
+			treeList = new ArrayList<Tree>();
+			for(District dis:list){
+				Tree node = new Tree();				
+				node.setId((int)dis.getId());
+				node.setPid(0);
+				node.setText(dis.getDictName());
+				node.setIconCls(null);				
+				treeList.add(node);
+			}
+		}
+		return treeList;
+	}
 }

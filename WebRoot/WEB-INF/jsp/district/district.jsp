@@ -13,10 +13,10 @@
 	
 	//添加信息
 	function add(){
-		$('#dlg').dialog('open').dialog('setTitle','新增菜单');
+		$('#dlg').dialog('open').dialog('setTitle','添加县分');
 		$('#fm').form('clear');
-		url = path+"/menu/save?parentid=0";
-		mesTitle = '新增菜单成功';
+		url = path+"/district/addDistrict";
+		mesTitle = '新增县分成功';
 	}
 	
 	//编辑信息
@@ -26,8 +26,8 @@
 	 		var id = row.id;
 		 	$('#dlg').dialog('open').dialog('setTitle','编辑菜单');
 		 	$('#fm').form('load',row);//这句话有问题，第一次加载时正确的，第二次就出错了，还保持第一次的数据
-		 	url = path+"/menu/save?parentid=0&id="+id;
-		 	mesTitle = '编辑菜单成功';
+		 	url = path+"/district/editDistrict?id="+id;
+		 	mesTitle = '编辑县分成功';
 	 	}else{
 	 		$.messager.alert('提示', '请选择要编辑的记录！', 'error');
 	 	}
@@ -39,9 +39,8 @@
 	 	if (row){
 	 		var id = row.id;
 		 	$('#dlg_delete').dialog('open').dialog('setTitle','删除菜单');
-		 	$('#fm').form('load',row);//这句话有问题，第一次加载时正确的，第二次就出错了，还保持第一次的数据
-		 	url = path+"/menu/del?id="+id;
-		 	mesTitle = '删除菜单成功';
+		 	url = path+"/district/deleteDistrict?id="+id;
+		 	mesTitle = '删除县分成功';
 	 	}else{
 	 		$.messager.alert('提示', '请选择要删除的记录！', 'error');
 	 	}
@@ -60,7 +59,7 @@
 				 	$('#dlg').dialog('close'); 
 				 	$('#datagrid').datagrid('reload'); 
 				} else {
-					 mesTitle = '新增菜单失败';
+					 mesTitle = '新增县分失败';
 				}
 				$.messager.show({ 
 					 title: mesTitle,
@@ -72,7 +71,7 @@
 	
 	//提交删除内容
 	function save_del(){
-	 	$('#fm').form('submit',{
+	 	$('#fm_del').form('submit',{
 		 	url: url,
 			success: function(result){
 				var result = eval('('+result+')');
@@ -80,7 +79,7 @@
 				 	$('#dlg_delete').dialog('close'); 
 				 	$('#datagrid').datagrid('reload'); 
 				} else {
-					 mesTitle = '删除菜单失败';
+					 mesTitle = '删除县分失败';
 				}
 				$.messager.show({ 
 					 title: mesTitle,
@@ -112,8 +111,9 @@
 			nowrap="false">
 			<thead>
 				<tr>
-					<th field="id" width="20" >序号</th>
+					<th field="id" width="20" >编号</th>
 					<th field="dictName" width="50">名称</th>
+					<th field="" width="150"></th>
 				</tr>
 			</thead>
 		</table>
@@ -123,11 +123,11 @@
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-reload" plain="true" onclick="reload();">刷新</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true" onclick="add();">新增菜单</a> 
+				iconCls="icon-add" plain="true" onclick="add();">新增县分</a> 
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true" onclick="edit();">编辑菜单</a> 
+				iconCls="icon-edit" plain="true" onclick="edit();">编辑县分</a> 
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-remove" plain="true" onclick="dtl();">删除菜单</a>
+				iconCls="icon-remove" plain="true" onclick="dtl();">删除县分</a>
 		</div>
 
 		<!-- 添加/修改对话框 -->
@@ -136,10 +136,7 @@
 			buttons="#dlg-buttons">
 			<form id="fm" method="post" novalidate>
 				<div class="fitem">
-					<label>菜单名称:</label> <input name="text" class="easyui-textbox" required="true">
-				</div>
-				<div class="fitem">
-					<label>资源地址:</label> <input name="url" class="easyui-textbox" required="true">
+					<label>县分名称:</label> <input name="dictName" class="easyui-textbox" required="true">
 				</div>
 			</form>
 		</div>
@@ -158,8 +155,8 @@
 			style="width:300px;height:200px;padding:10px 20px" closed="true"
 			buttons="#dlg-del-buttons">
 			<div class="ftitle">请谨慎操作</div>
-			<form id="fm" method="post" novalidate>
-					<label>确定删除菜单吗？</label>
+			<form id="fm_del" method="post" novalidate>
+					<label>确定删除县分吗？</label>
 			</form>
 		</div>
 		

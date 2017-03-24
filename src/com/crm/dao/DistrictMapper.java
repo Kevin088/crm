@@ -21,7 +21,7 @@ public interface DistrictMapper {
 	
 	public void addDistrict(District district);
 
-	public void editDistrict(District district);
+	public void updateDistrict(District district);
 	
 	public void deleteDistrict(long id);
 	//分页
