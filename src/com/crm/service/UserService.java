@@ -11,9 +11,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.crm.dao.UserMapper;
+import com.crm.model.Role;
 import com.crm.model.SysMenu;
 import com.crm.model.User;
 import com.crm.model.easyui.PageHelper;
+import com.crm.pojo.UserPojo;
 
 /**
  * @author zh
@@ -74,10 +76,10 @@ public class UserService {
 	 * @param page
 	 * @return
 	 */
-	public List<User> datagridUser(PageHelper page,Integer sysid) {
+	public List<UserPojo> datagridUser(PageHelper page,User user,Integer districtId) {
 		page.setStart((page.getPage()-1)*page.getRows());
 		page.setEnd(page.getPage()*page.getRows());
-		return userMapper.datagridUser(page,sysid);  
+		return userMapper.datagridUser(page,user,districtId);  
 	}
 
 	/**
@@ -103,6 +105,11 @@ public class UserService {
 	public void deleteUser(int id){
 		userMapper.deleteUser(id);
 	}
-    
+	/**
+	 * 权限列表
+	 */
+	public List<Role> roleList(){
+		return userMapper.getRoleList();
+	}
     
 }

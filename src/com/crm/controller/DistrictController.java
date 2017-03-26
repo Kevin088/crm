@@ -94,7 +94,7 @@ public class DistrictController {
      */
 	@ResponseBody
     @RequestMapping(value = "/editDistrict",method = RequestMethod.POST)
-    public Json editUser(District district) {
+    public Json editDistrict(District district) {
         Json j = new Json();
         log.debug("穿过来的用户ID为："+district.getId());
         try {
@@ -139,5 +139,12 @@ public class DistrictController {
         }
         return list;
 	}
-	
+	/**
+	 * 县分所有
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/alldistrict",method = RequestMethod.POST)
+	public List<District> allDistrict() {
+		return districtService.getDatagrid();
+	}
 }

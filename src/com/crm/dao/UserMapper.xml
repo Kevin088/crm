@@ -37,25 +37,23 @@
 	<select id="getDatagridTotal" resultType="long">
 		select 
 			count(1) 
-		from sysuser u,systemdef t where u.sysid=t.id 
-		<if test="csysid != null and csysid != ''">
-            and (u.sysid=t.id or u.sysid=t.parentid or u.sysid=t.ptopid) 
-            and (t.id = #{csysid} or t.parentid = #{csysid} or t.ptopid = #{csysid})
+		from sysuser u where isdelete=0 
+		<if test="districtId != null and districtId != '' and districtId != 0">
+            and district_id =#{districtId}
         </if>
         <if test="user.username != null and user.username != ''">
             and username like concat('%',#{user.username},'%')
         </if>
 	</select>
 
-	<select id="datagridUser" resultType="com.crm.model.User">
-		select 
-			u.id,u.username,u.password,u.email,u.gender,u.qq,u.weixin,u.regtime,u.idcard,
-			t.name sysname,
-  			(select name from systemdef psys where psys.id=t.ptopid) psysname 
-		from sysuser u,systemdef t where u.sysid=t.id 
-		<if test="csysid != null and csysid != ''">
-			and (u.sysid=t.id or u.sysid=t.parentid or u.sysid=t.ptopid) 
-            and (t.id = #{csysid} or t.parentid = #{csysid} or t.ptopid = #{csysid})
+	<select id="datagridUser"  resultType="com.crm.pojo.UserPojo">
+		select u.id,u.username,u.password ,r.name roleName
+		from sysuser u left join sysrole r on u.role_id = r.id where isdelete=0
+		<if test="districtId != null and districtId != '' and districtId != 0">
+            and district_id =#{districtId}
+        </if>
+        <if test="user.username != null and user.username != ''">
+            and username like concat('%',#{user.username},'%')
         </if>
 		<if test="page.sort != null and page.sort != ''">
             order by #{page.sort} #{page.order}
@@ -69,21 +67,13 @@
 		insert into sysuser(<trim suffixOverrides=",">
             <if test="username !=null and username !=''">username,</if>
             <if test="password !=null and password !=''">password,</if>
-            <if test="idcard !=null and idcard !=''">idcard,</if>
-            <if test="email !=null and email !=''">email,</if>
-            <if test="gender !=null and gender !=''">gender,</if>
-            <if test="qq !=null and qq !=''">qq,</if>
-            <if test="weixin !=null and weixin !=''">weixin,</if>
-            <if test="regtime !=null and regtime !=''">regtime</if>
+            <if test="district_id !=null and district_id !='' and district_id !=0">district_id,</if>
+            <if test="role_id !=null and role_id !='' and role_id !=0 ">role_id</if>
             </trim>)values(<trim suffixOverrides=",">
             <if test="username !=null and username !=''">#{username},</if>
             <if test="password !=null and password !=''">#{password},</if>
-            <if test="idcard !=null and idcard !=''">#{idcard},</if>
-            <if test="email !=null and email !=''">#{email},</if>
-            <if test="gender !=null and gender !=''">#{gender},</if>
-            <if test="qq !=null and qq !=''">#{qq},</if>
-            <if test="weixin !=null and weixin !=''">#{weixin},</if>
-            <if test="regtime !=null and regtime !=''">#{regtime}</if> 
+            <if test="district_id !=null and district_id !='' and district_id !=0 ">#{district_id},</if>
+            <if test="role_id !=null and role_id !='' and role_id !=0 ">#{role_id}</if>
             </trim>)
 	</insert>
 	
@@ -92,17 +82,17 @@
     	<set>
     		<if test="username !=null and username !=''">username =#{username},</if>
             <if test="password !=null and password !=''">password =#{password},</if>
-            <if test="idcard !=null and idcard !=''">idcard=#{idcard},</if>
-            <if test="email !=null and email !=''">email=#{email},</if>
-            <if test="gender !=null and gender !=''">gender=#{gender},</if>
-            <if test="qq !=null and qq !=''">qq=#{qq},</if>
-            <if test="weixin !=null and weixin !=''">weixin=#{weixin},</if>
-            <if test="regtime !=null and regtime !=''">regtime=#{regtime}</if>
+            <if test="district_id !=null and district_id !='' and district_id !=0">district_id=#{district_id},</if>
+            <if test="role_id !=null and role_id !='' and role_id !=0">role_id=#{role_id},</if>
     	</set>
     	where id = #{id}
     </update>
     
     <delete id="deleteUser" parameterType="int">
-		delete from sysuser where id=#{id}
+     	update sysuser set isdelete=1 where id=#{id}
 	</delete>
+	<!-- 权限列表 -->
+	<select id="getRoleList"  resultType="com.crm.model.Role">
+		select u.id,u.name roleName from sysrole u 
+	</select>
 </mapper>

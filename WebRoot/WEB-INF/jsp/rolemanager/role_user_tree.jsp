@@ -8,13 +8,12 @@
 <script src="${path}/js/assets/user_list_tree.js" type="text/javascript"></script>
 </head>
 <body class="easyui-layout" fit="true">
-	<!-- 左半部-组织机构 -->
-	<div id="div_organizeTree" region="west"
+	<!-- 左半部-权限树 -->
+	<div id="div_roleTree" region="west"
 		iconCls="icon-chart_organisation" split="true" title="县分"
 		style="width: 200px; padding: 2px" collapsible="false">
-		<ul id="organizeTree"></ul>
+		<ul id="roleTree"></ul>
 	</div>
-	staffTab
 	<!-- 右半部-员工列表-->
 	<div id="div_staffGird" region="center" iconCls="icon-users"
 		style="overflow: hidden">
@@ -102,7 +101,7 @@
 	//提示消息
 	var mesTitle;
 	$(function() {
-		//1.1 加载组织机构树列表
+		//1.1 加载权限树列表
 		$('#organizeTree').tree(
 				{
 					lines : true,

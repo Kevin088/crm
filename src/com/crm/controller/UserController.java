@@ -4,6 +4,7 @@
 package com.crm.controller;
 
 import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.crm.model.Role;
 import com.crm.model.User;
 import com.crm.model.easyui.DataGrid;
 import com.crm.model.easyui.Json;
 import com.crm.model.easyui.PageHelper;
+import com.crm.pojo.UserPojo;
 import com.crm.service.UserService;
 
 /**
@@ -56,10 +59,10 @@ public class UserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/user/datagrid", method = RequestMethod.POST)
-	public DataGrid datagrid(PageHelper page,User user,Integer sysid) {
+	public DataGrid datagrid(PageHelper page,User user,Integer districtId) {
 		DataGrid dg = new DataGrid();
-		dg.setTotal(userService.getDatagridTotal(user,sysid));
-		List<User> userList = userService.datagridUser(page,sysid);
+		dg.setTotal(userService.getDatagridTotal(user,districtId));
+		List<UserPojo> userList = userService.datagridUser(page,user,districtId);
 		dg.setRows(userList);
 		return dg;
 	}
@@ -71,12 +74,11 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/user/addUser",method = RequestMethod.POST)
     public Json addUser(User user) {
-		Json j = new Json();
-		
+		Json j = new Json();	
 		try {
             userService.add(user);
             j.setSuccess(true);
-            j.setMsg("用户新增成功！");
+            j.setMsg("用户添加成功！");
             j.setObj(user);
         } catch (Exception e) {
             j.setMsg(e.getMessage());
@@ -124,5 +126,13 @@ public class UserController {
             j.setMsg(e.getMessage());
         }
         return j;
+	}
+	/**
+	 * 获取角色列表
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/user/rolelist",method = RequestMethod.POST)
+	public List<Role> roleList() {
+		return userService.roleList();
 	}
 }

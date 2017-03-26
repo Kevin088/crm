@@ -55,7 +55,7 @@ public class SystemdefController extends BaseController {
 				node.setPid(systemdef.getParentid());
 			}
 			if(systemdef.getCountChildrens() > 0){	//有子节点
-				node.setState("closed");
+				node.setState("open");
 			}
 			
 			/*

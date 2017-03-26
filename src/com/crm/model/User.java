@@ -12,6 +12,7 @@ public class User {
 	private String username;
 	private String password;
 	private int district_id;//县分
+	private int role_id;//角色
 	private String sex;
 	private String birthday;
 	private String MarryInfo;
@@ -134,7 +135,12 @@ public class User {
 	public void setCashPledge(String cashPledge) {
 		this.cashPledge = cashPledge;
 	}
-	
+	public int getRole_id() {
+		return role_id;
+	}
+	public void setRole_id(int role_id) {
+		this.role_id = role_id;
+	}
 
 	
 }

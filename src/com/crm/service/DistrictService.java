@@ -62,7 +62,20 @@ public class DistrictService {
 				node.setIconCls(null);				
 				treeList.add(node);
 			}
+			Tree node = new Tree();				
+			node.setId(0);
+			node.setPid(0);
+			node.setText("全部");
+			node.setIconCls(null);				
+			treeList.add(node);
 		}
 		return treeList;
+	}
+	/**
+	 * 获取所有县分
+	 * @return
+	 */
+	public List<District> getDatagrid(){
+		return districtMapper.getDatagrid();
 	}
 }
