@@ -27,9 +27,9 @@ public interface UserMapper {
 	
 	public List<User> getDatagrid();
 
-	public Long getDatagridTotal(@Param("user")User user,@Param("districtId")Integer districtId);
+	public Long getDatagridTotal(@Param("user")User user,@Param("districtId")Integer districtId,@Param("roleId")Integer roleId);
 
-	public List<UserPojo> datagridUser(@Param("page")PageHelper page,@Param("user")User user,@Param("districtId")Integer districtId);
+	public List<UserPojo> datagridUser(@Param("page")PageHelper page,@Param("user")User user,@Param("districtId")Integer districtId,@Param("roleId")Integer roleId);
 
 	public void addUser(User user);
 

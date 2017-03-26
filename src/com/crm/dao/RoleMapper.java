@@ -23,4 +23,5 @@ public interface RoleMapper {
 	 * @return
 	 */
 	public List<Role> getRoleList();
+	public void roleUserEdit(@Param("ids")List<Integer>ids,@Param("roleId")Integer roleId);
 }

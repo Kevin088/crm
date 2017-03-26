@@ -228,7 +228,7 @@
 	<div region="center" border="false" style="overflow: hidden;">
 		<!-- 用户信息列表 title="用户管理" -->
 		<table id="datagrid" class="easyui-datagrid" fit="true"
-			url="${path}/customerinfo/datagrid?" 
+			url="${path}/customerinfo/datagrid" 
 			toolbar="#toolbar" 
 			pagination="true"
 			singleSelect="true" 
@@ -264,17 +264,17 @@
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-reload" plain="true" onclick="reload();">刷新</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true" onclick="addObject();">新增客户</a> 
+				iconCls="icon-add" plain="true" onclick="addObject();">新增</a> 
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true" onclick="editObject();">编辑客户</a> 
+				iconCls="icon-edit" plain="true" onclick="editObject();">编辑</a> 
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-remove" plain="true" onclick="deleteObject();">删除客户</a>
+				iconCls="icon-remove" plain="true" onclick="deleteObject();">删除</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-search" plain="true" onclick="searchObject();">查询客户</a>
+				iconCls="icon-search" plain="true" onclick="searchObject();">查询</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true" onclick="exportObject();">导出</a>
-			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-remove" plain="true" onclick="importObject();">导入</a>
+<!-- 			<a href="javascript:void(0);" class="easyui-linkbutton"
+				iconCls="icon-remove" plain="true" onclick="importObject();">导入</a> -->
 		</div>
 
 		<!-- 添加/修改对话框 -->
@@ -362,6 +362,15 @@
 				<div class="fitem">
 					<label>电视到期:</label> 
 					<input name="tvEndTime" class="easyui-datebox" required="true">
+				</div>
+				<div class="fitem">
+					<label>县分:</label>
+					<input id="slt_district" name="district_id" class="easyui-combobox" required="true" editable="false"
+					data-options="
+					valueField:'id',
+					textField:'dictName',
+					panelHeight: 'auto',
+					url:'${path}/district/alldistrict'"/>				
 				</div>				
 			</form>
 		<!--  查询对话框-->

@@ -59,10 +59,10 @@ public class UserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/user/datagrid", method = RequestMethod.POST)
-	public DataGrid datagrid(PageHelper page,User user,Integer districtId) {
+	public DataGrid datagrid(PageHelper page,User user,Integer districtId,Integer roleId) {
 		DataGrid dg = new DataGrid();
-		dg.setTotal(userService.getDatagridTotal(user,districtId));
-		List<UserPojo> userList = userService.datagridUser(page,user,districtId);
+		dg.setTotal(userService.getDatagridTotal(user,districtId,roleId));
+		List<UserPojo> userList = userService.datagridUser(page,user,districtId,roleId);
 		dg.setRows(userList);
 		return dg;
 	}
