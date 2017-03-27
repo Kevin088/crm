@@ -11,11 +11,20 @@
 	</select> 
 	
 	<select id="getDatagridTotal" resultType="long">
-		select count(1) from customer_info where  1=1
+		select count(1) from customer_info c JOIN sysuser u ON c.username_id = u.id where  1=1
+		<if test="userName!=null and userName!=''">
+			AND u.username LIKE concat(concat('%',#{userName}),'%')
+		</if>
 		<if test="name != null and name != ''">
             and name like concat('%',#{name},'%')
         </if>
-        and isdelete=0
+        <if test="district_id!=0">
+			AND c.district_id =#{district_id}
+		</if>
+		<if test="username_id!=0">
+			AND c.username_id =#{username_id}
+		</if>
+        and c.isdelete=0
 	</select>
 
 	<select id="datagridCustomerInfo" resultType="com.crm.pojo.CustomerInfoPojo">
@@ -25,6 +34,12 @@
 		</if>
 		<if test="customer.name!=null and customer.name!=''">
 			AND c.name LIKE concat(concat('%',#{customer.name}),'%')
+		</if>
+		<if test="customer.district_id!=0">
+			AND c.district_id =#{customer.district_id}
+		</if>
+		<if test="customer.username_id!=0">
+			AND c.username_id =#{customer.username_id}
 		</if>
 		<if test="page.sort != null and page.sort != ''">
             order by #{page.sort} #{page.order}

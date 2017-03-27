@@ -34,7 +34,7 @@ public interface CustomerInfoMapper {
 	public List<CustomerInfoPojo> getDatagrid();
 
 	//获取总数
-	public Long getDatagridTotal(CustomerInfo customerInfo);
+	public Long getDatagridTotal(CustomerInfoPojo customerInfoPojo);
 
 	//分页
 	public List<CustomerInfoPojo> datagridCustomerInfo(@Param("page")PageHelper page,@Param("customer")CustomerInfoPojo customerInfoPojo);

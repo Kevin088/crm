@@ -70,79 +70,81 @@ public class Test3 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SysMenu s1=new SysMenu();
-    	s1.setIconCls("父-图片-1");
-    	s1.setId(1);
-    	s1.setParentid(0);
-    	s1.setName("父1");
-    	s1.setUrl("父-url-1");
-    	
-    	SysMenu s2=new SysMenu();
-    	s2.setIconCls("图片-2");
-    	s2.setId(2);
-    	s2.setParentid(0);
-    	s2.setName("父2");
-    	s2.setUrl("父-url-2");
-    	
-    	SysMenu s3=new SysMenu();
-    	s3.setIconCls("图片-3");
-    	s3.setId(3);
-    	s3.setParentid(1);
-    	s3.setName("父1-节点3");
-    	s3.setUrl("url-3");
-    	
-    	SysMenu s4=new SysMenu();
-    	s4.setIconCls("图片-4");
-    	s4.setId(4);
-    	s4.setParentid(2);
-    	s4.setName("父2-节点4");
-    	s4.setUrl("url-4");
-    	
-    	SysMenu s5=new SysMenu();
-    	s5.setIconCls("图片-5");
-    	s5.setId(5);
-    	s5.setParentid(2);
-    	s5.setName("父2-节点5");
-    	s5.setUrl("url-5");
-    	
-    	SysMenu s6=new SysMenu();
-    	s6.setIconCls("图片-6");
-    	s6.setId(6);
-    	s6.setParentid(5);
-    	s6.setName("父2-父5-节点6");
-    	
-    	SysMenu s7=new SysMenu();
-    	s7.setIconCls("图片-7");
-    	s7.setId(7);
-    	s7.setParentid(3);
-    	s7.setName("父1-父3-节点7");
-    	
-    	SysMenu s8=new SysMenu();
-    	s8.setIconCls("图片-8");
-    	s8.setId(8);
-    	s8.setParentid(3);
-    	s8.setName("父1-父3-节点8"); 
-    	
-    	SysMenu s9=new SysMenu();
-    	s9.setIconCls("图片-9");
-    	s9.setId(9);
-    	s9.setParentid(8);
-    	s9.setName("父1-父3-父8-节点9"); 
-    	
-    	List<SysMenu> menuList = new ArrayList<>();
-    	menuList.add(s1);
-    	menuList.add(s2);
-    	menuList.add(s3);
-    	menuList.add(s4);
-    	menuList.add(s5);
-    	menuList.add(s6);
-    	menuList.add(s7);
-    	menuList.add(s8);
-    	menuList.add(s9);
-    	
-    	Test3 t =new Test3();
-        String json = t.createTreeJson(menuList);
-        System.out.println(json);
+//		SysMenu s1=new SysMenu();
+//    	s1.setIconCls("父-图片-1");
+//    	s1.setId(1);
+//    	s1.setParentid(0);
+//    	s1.setName("父1");
+//    	s1.setUrl("父-url-1");
+//    	
+//    	SysMenu s2=new SysMenu();
+//    	s2.setIconCls("图片-2");
+//    	s2.setId(2);
+//    	s2.setParentid(0);
+//    	s2.setName("父2");
+//    	s2.setUrl("父-url-2");
+//    	
+//    	SysMenu s3=new SysMenu();
+//    	s3.setIconCls("图片-3");
+//    	s3.setId(3);
+//    	s3.setParentid(1);
+//    	s3.setName("父1-节点3");
+//    	s3.setUrl("url-3");
+//    	
+//    	SysMenu s4=new SysMenu();
+//    	s4.setIconCls("图片-4");
+//    	s4.setId(4);
+//    	s4.setParentid(2);
+//    	s4.setName("父2-节点4");
+//    	s4.setUrl("url-4");
+//    	
+//    	SysMenu s5=new SysMenu();
+//    	s5.setIconCls("图片-5");
+//    	s5.setId(5);
+//    	s5.setParentid(2);
+//    	s5.setName("父2-节点5");
+//    	s5.setUrl("url-5");
+//    	
+//    	SysMenu s6=new SysMenu();
+//    	s6.setIconCls("图片-6");
+//    	s6.setId(6);
+//    	s6.setParentid(5);
+//    	s6.setName("父2-父5-节点6");
+//    	
+//    	SysMenu s7=new SysMenu();
+//    	s7.setIconCls("图片-7");
+//    	s7.setId(7);
+//    	s7.setParentid(3);
+//    	s7.setName("父1-父3-节点7");
+//    	
+//    	SysMenu s8=new SysMenu();
+//    	s8.setIconCls("图片-8");
+//    	s8.setId(8);
+//    	s8.setParentid(3);
+//    	s8.setName("父1-父3-节点8"); 
+//    	
+//    	SysMenu s9=new SysMenu();
+//    	s9.setIconCls("图片-9");
+//    	s9.setId(9);
+//    	s9.setParentid(8);
+//    	s9.setName("父1-父3-父8-节点9"); 
+//    	
+//    	List<SysMenu> menuList = new ArrayList<>();
+//    	menuList.add(s1);
+//    	menuList.add(s2);
+//    	menuList.add(s3);
+//    	menuList.add(s4);
+//    	menuList.add(s5);
+//    	menuList.add(s6);
+//    	menuList.add(s7);
+//    	menuList.add(s8);
+//    	menuList.add(s9);
+//    	
+//    	Test3 t =new Test3();
+//        String json = t.createTreeJson(menuList);
+//        System.out.println(json);
+		
+		System.out.println((int)Math.ceil(17/10.0));
 	}
 
 }

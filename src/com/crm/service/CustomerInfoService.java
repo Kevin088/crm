@@ -74,8 +74,8 @@ public class CustomerInfoService {
 	 * @param user
 	 * @return
 	 */
-	public Long getDatagridTotal(CustomerInfo customerInfo) {
-		return customerInfoMapper.getDatagridTotal(customerInfo);
+	public Long getDatagridTotal(CustomerInfoPojo customerInfoPojo) {
+		return customerInfoMapper.getDatagridTotal(customerInfoPojo);
 	}
 
 	/**
