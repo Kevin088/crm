@@ -29,7 +29,6 @@ import com.crm.model.Customer;
 import com.crm.model.CustomerInfo;
 import com.crm.model.easyui.PageHelper;
 import com.crm.pojo.CustomerInfoPojo;
-import com.crm.pojo.CustomerInfoSearchPojo;
 import com.crm.util.CustomerInfoUtils;
 
 /**
@@ -86,16 +85,8 @@ public class CustomerInfoService {
 	 */
 	public List<CustomerInfoPojo> datagridCustomer(PageHelper page,CustomerInfoPojo customerInfoPojo) {
 		page.setStart((page.getPage()-1)*page.getRows());
-		page.setEnd(page.getPage()*page.getRows());
-		CustomerInfoSearchPojo pageInfoPojo=new CustomerInfoSearchPojo();
-		
-		pageInfoPojo.setName(customerInfoPojo.getName());
-		pageInfoPojo.setUserName(customerInfoPojo.getUserName());
-		pageInfoPojo.setSort(page.getSort());
-		pageInfoPojo.setOrder(page.getOrder());
-		pageInfoPojo.setStart(page.getStart());
-		pageInfoPojo.setEnd(page.getEnd());
-		return customerInfoMapper.datagridCustomerInfo(pageInfoPojo);  
+		page.setEnd(page.getRows());	
+		return customerInfoMapper.datagridCustomerInfo(page,customerInfoPojo);  
 	}
 
 	//添加
@@ -118,7 +109,7 @@ public class CustomerInfoService {
 		String[] titles=new String[]{"客户姓名","联系方式","地址","是否有电脑","宽带运营商","宽带满意程度"
 				,"是否融合","宽带资费","宽带到期","电视运营商","电视满意程度","电视资费","电视到期","县分"
 				,"创建人","创建时间"};
-		List<CustomerInfoPojo> list=customerInfoMapper.datagridCustomerInfo(new CustomerInfoSearchPojo());  
+		List<CustomerInfoPojo> list=customerInfoMapper.datagridCustomerInfo(new PageHelper(),new CustomerInfoPojo());  
 
 		/**
 	       * 以下为生成Excel操作

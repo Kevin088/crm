@@ -8,17 +8,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.crm.dao.DistrictMapper;
 import com.crm.model.District;
-import com.crm.model.SysMenu;
-import com.crm.model.User;
 import com.crm.model.easyui.PageHelper;
 import com.crm.model.easyui.Tree;
-import com.crm.pojo.CustomerInfoPojo;
-import com.crm.pojo.CustomerInfoSearchPojo;
 
 /**
  * @author zh
@@ -33,7 +28,7 @@ public class DistrictService {
 	//分页
 	public List<District> datagridDistrict(PageHelper page) {
 		page.setStart((page.getPage()-1)*page.getRows());
-		page.setEnd(page.getPage()*page.getRows());		
+		page.setEnd(page.getRows());		
 		return districtMapper.datagridDistrict(page);  
 	}
 	//分页

@@ -78,7 +78,7 @@ public class UserService {
 	 */
 	public List<UserPojo> datagridUser(PageHelper page,User user,Integer districtId,Integer roleId) {
 		page.setStart((page.getPage()-1)*page.getRows());
-		page.setEnd(page.getPage()*page.getRows());
+		page.setEnd(page.getRows());
 		return userMapper.datagridUser(page,user,districtId,roleId);  
 	}
 

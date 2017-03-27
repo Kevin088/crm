@@ -58,7 +58,6 @@ public class CustomerInfoController {
 		DataGrid dg = new DataGrid();
 		dg.setTotal(customerInfoService.getDatagridTotal(customerInfoPojo));
 		List<CustomerInfoPojo> list = customerInfoService.datagridCustomer(page,customerInfoPojo);
-		System.out.println(list.get(0).getDatetime().getTime());
 		dg.setRows(list);
 		return dg;
 	}
