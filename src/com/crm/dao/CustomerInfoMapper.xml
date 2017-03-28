@@ -41,9 +41,10 @@
 		<if test="customer.username_id!=0">
 			AND c.username_id =#{customer.username_id}
 		</if>
-		<if test="page.sort != null and page.sort != ''">
+<!-- 		<if test="page.sort != null and page.sort != ''">
             order by #{page.sort} #{page.order}
-        </if>
+        </if> -->
+         order by datetime desc
         <if test="page.page > 0">
             limit #{page.start},#{page.end}
         </if>

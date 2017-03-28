@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -74,8 +75,8 @@ public class AppController {
 			CustomerInfoPojo customerInfo) {
 		AppJson json = new AppJson();
 		pageHelper.setRows(10);
-		pageHelper.setOrder("datetime");
-		pageHelper.setSort("desc");
+		pageHelper.setOrder("desc");
+		pageHelper.setSort("datetime");
 		try {
 			json.setSuccess(true);
 			Long totalCount = customerInfoService
@@ -90,38 +91,38 @@ public class AppController {
 		return json;
 	}
 
-	/**
-	 * 用户下 客户信息列表
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/customerInfoListByUserId", method = RequestMethod.GET)
-	public AppJson customerInfoListByUserId(PageHelper pageHelper,
-			CustomerInfoPojo customerInfo) {
-		AppJson json = new AppJson();
-
-		pageHelper.setRows(10);
-		pageHelper.setOrder("datetime");
-		pageHelper.setSort("desc");
-		try {
-			json.setSuccess(true);
-			Long totalCount = customerInfoService
-					.getDatagridTotal(customerInfo);
-			json.setPageCount((int) Math.ceil(totalCount / 10.0));
-			List<CustomerInfoPojo> list = customerInfoService.datagridCustomer(
-					pageHelper, customerInfo);
-			json.setObj(list);
-		} catch (Exception e) {
-			json.setSuccess(false);
-		}
-		return json;
-	}
+//	/**
+//	 * 用户下 客户信息列表
+//	 */
+//	@ResponseBody
+//	@RequestMapping(value = "/customerInfoListByUserId", method = RequestMethod.GET)
+//	public AppJson customerInfoListByUserId(PageHelper pageHelper,
+//			CustomerInfoPojo customerInfo) {
+//		AppJson json = new AppJson();
+//
+//		pageHelper.setRows(10);
+//		pageHelper.setOrder("datetime");
+//		pageHelper.setSort("desc");
+//		try {
+//			json.setSuccess(true);
+//			Long totalCount = customerInfoService
+//					.getDatagridTotal(customerInfo);
+//			json.setPageCount((int) Math.ceil(totalCount / 10.0));
+//			List<CustomerInfoPojo> list = customerInfoService.datagridCustomer(
+//					pageHelper, customerInfo);
+//			json.setObj(list);
+//		} catch (Exception e) {
+//			json.setSuccess(false);
+//		}
+//		return json;
+//	}
 
 	/**
 	 * 添加
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/addCustomerInfo", method = RequestMethod.POST)
-	public AppJson addCustomerInfo(CustomerInfo customerInfo) {
+	public AppJson addCustomerInfo(@RequestBody CustomerInfo customerInfo) {
 		AppJson json = new AppJson();
 		try {
 			json.setSuccess(true);
