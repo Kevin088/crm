@@ -40,6 +40,7 @@
  			name: $('#name').val(),
  			userName: $('#userName').val()
  		}); 
+ 		$("#dlgsearch").dialog("close");
  	}
 	//删除用信息
  	function deleteObject(){
@@ -197,6 +198,7 @@
 		}
 		return a;
 	}	
+
 	//导出用户信息
  	function exportObject(){
 	 	$('#dlg_export').dialog('open').dialog('setTitle','导出用户');
@@ -270,7 +272,7 @@
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true" onclick="deleteObject();">删除</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
-				iconCls="icon-search" plain="true" onclick="searchObject();">查询</a>
+				iconCls="icon-search" plain="true" onclick="javascript:$('#dlgsearch').dialog('open')">查询</a>
 			<a href="javascript:void(0);" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true" onclick="exportObject();">导出</a>
 <!-- 			<a href="javascript:void(0);" class="easyui-linkbutton"

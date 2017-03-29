@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.crm.model.CustomerInfo;
+import com.crm.model.District;
 import com.crm.model.User;
 import com.crm.model.easyui.PageHelper;
 import com.crm.pojo.AppJson;
 import com.crm.pojo.CustomerInfoPojo;
 import com.crm.service.CustomerInfoService;
+import com.crm.service.DistrictService;
 import com.crm.service.UserService;
 
 @Controller
@@ -25,7 +27,8 @@ public class AppController {
 	UserService userService;
 	@Resource
 	CustomerInfoService customerInfoService;
-
+	@Resource
+	DistrictService districtService;
 	/**
 	 * 登录
 	 */
@@ -47,7 +50,24 @@ public class AppController {
 		}
 		return json;
 	}
-
+	/**
+	 * 根据userId 获取县分名字
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getDistrictByUseId", method = RequestMethod.GET)
+	public AppJson getDistrictByUseId(User user) {
+		AppJson json = new AppJson();
+		try {
+			District district = districtService.getDistrictByUserid(user);
+			json.setObj(district);
+			json.setSuccess(true);
+			json.setMsg("成功");
+		} catch (Exception e) {
+			json.setSuccess(false);
+			json.setMsg("失败");
+		}
+		return json;
+	}
 	/**
 	 * 修改密码
 	 */

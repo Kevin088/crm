@@ -29,4 +29,8 @@ public interface DistrictMapper {
 	//获取所有
 	public List<District> getDatagrid();
 	public long getDatagridTotal();
+	/**
+	 * 根据UserId 获取县分
+	 */
+	public District getDistrictByUserId(User user);
 }

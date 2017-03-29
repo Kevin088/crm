@@ -36,4 +36,7 @@
     	</set>
     	where id = #{id}
     </update>
+    	<select id="getDistrictByUserId" resultType="com.crm.model.District">
+		SELECT d.* FROM district d LEFT JOIN sysuser u ON d.id=u.district_id WHERE u.id=#{id} AND d.isdelete=0 LIMIT 0,1
+	</select>
 </mapper>

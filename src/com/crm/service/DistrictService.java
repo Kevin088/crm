@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.crm.dao.DistrictMapper;
 import com.crm.model.District;
+import com.crm.model.User;
 import com.crm.model.easyui.PageHelper;
 import com.crm.model.easyui.Tree;
 
@@ -72,5 +73,8 @@ public class DistrictService {
 	 */
 	public List<District> getDatagrid(){
 		return districtMapper.getDatagrid();
+	}
+	public District getDistrictByUserid(User user){
+		return districtMapper.getDistrictByUserId(user);
 	}
 }
