@@ -174,7 +174,7 @@ public class AppController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/updateCustomerInfoByUserId", method = RequestMethod.POST)
-	public AppJson updateCustomerInfoByUserId(CustomerInfo customerInfo) {
+	public AppJson updateCustomerInfoByUserId(@RequestBody CustomerInfo customerInfo) {
 		AppJson json = new AppJson();
 		try {
 			json.setSuccess(true);
