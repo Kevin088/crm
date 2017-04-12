@@ -96,10 +96,10 @@
 		        <if test="name !=null and name !=''">name=#{name},</if>
 	            <if test="telephone !=null and telephone !=''">telephone=#{telephone},</if>
 	            <if test="address !=null and address !=''">address=#{address},</if>
-	            <if test="iscompute !=null and iscompute !=''">iscompute=#{iscompute},</if>
+	            iscompute=#{iscompute},
 	            <if test="broadband !=null and broadband !=''">broadband=#{broadband},</if>
 	            <if test="broadbandSatisfy !=null and broadbandSatisfy !=''">broadbandSatisfy=#{broadbandSatisfy},</if>
-	            <if test="isBroadbandFusion !=null and isBroadbandFusion !=''">isBroadbandFusion=#{isBroadbandFusion},</if>
+	            isBroadbandFusion=#{isBroadbandFusion},
 	            <if test="broadbandPrice !=null and broadbandPrice !=''">broadbandPrice=#{broadbandPrice},</if>
 	            <if test="broadbandEndTime !=null and broadbandEndTime !=''">broadbandEndTime=#{broadbandEndTime},</if>
 	            <if test="tv !=null and tv !=''">tv=#{tv},</if>
